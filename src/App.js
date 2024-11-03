@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Converter from './components/Converter';
 
 function App() {
+  const beams = Array.from({ length: 50 }); // Generate 50 beams
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {/* Falling Beams Background */}
+      {beams.map((_, index) => (
+        <div
+          className="beam"
+          key={index}
+          style={{
+            left: `${Math.random() * 100}vw`, // Randomize beam position horizontally
+            '--i': Math.random(), // Randomize animation delay
+          }}
+        ></div>
+      ))}
+
+      {/* Centered Converter */}
+      <div id="converter-container">
+        <h2>Unit Converter</h2>
+        <Converter />
+      </div>
     </div>
   );
 }

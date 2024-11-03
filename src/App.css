@@ -1,38 +1,140 @@
-.App {
+/* Dark Theme Background */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+
+/* Falling Beam Animation with Shine Effect */
+@keyframes fallingBeams {
+  0% {
+    top: -100px;
+    opacity: 0;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  10% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Beam Styles */
+.beam {
+  position: absolute;
+  width: 1px;
+  height: 30px;
+  background-color: rgb(254, 0, 0);
+  animation: fallingBeams 3s linear infinite;
+  animation-delay: calc(-3s * var(--i));
+  z-index: 1;
+}
+
+/* Centered Converter */
+#converter-container {
+  background-color: #1a1a1a8a;  /* Dark gray background */
+  padding: 20px;
+  margin: 50px 0;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+  text-align: center;
+  z-index: 1;  /* Place converter above the beams */
+  position: relative;  /* Ensures z-index is applied */
+}
+
+/* Gradient Heading */
+h2 {
+  font-size: 30px;
+  background: linear-gradient(to right, white, gray);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Styling */
+input[type="number"],
+select {
+  padding: 8px;
+  margin: 8px 0;
+  background-color: #444;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input[type="number"]{
+  width: 95%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button {
+  padding: 10px 25px;
+  margin: 10px;
+  background-color: #55555567;
   color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+h3{
+  background: linear-gradient(to right, white, gray);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+button:hover {
+  background-color: #fff8f8;
+  color: #000;
 }
 
-.App-link {
-  color: #61dafb;
+/* Toggle Button Styling */
+.imperial-toggle label {
+  margin: 0 10px;
+  cursor: pointer;
+  background: linear-gradient(to right, white, gray);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  #converter-container {
+    max-width: 300px; /* Narrower width on smaller screens */
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  #converter-container h2 {
+    font-size: 1.5rem; /* Smaller font size for heading */
+  }
+
+  /* Input and Dropdown Styling for Smaller Screens */
+  #converter-container input, #converter-container select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #converter-container {
+    max-width: 80%; /* Full width on very small screens */
+    /* padding: 10px; */
+    margin: 5% 10%;
+  }
+
+  #converter-container h2 {
+    font-size: 1.2rem; /* Even smaller font size for very small screens */
   }
 }
